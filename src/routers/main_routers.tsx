@@ -1,15 +1,18 @@
+import BaseLayout from "@src/layouts/base";
 import { dashboardLoader } from "@src/loaders";
 import Dashboard from "@src/pages/dashboard";
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
 export const mainRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to={"/dashboard"} />,
-  },
-  {
-    path: "/dashboard",
-    element: <Dashboard />,
-    loader: dashboardLoader,
+    element: <BaseLayout />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+        loader: dashboardLoader,
+      },
+    ],
   },
 ]);
